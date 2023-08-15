@@ -36,13 +36,16 @@ try {
         'data' => array(
             'unixtime' => $unixTime,
             'domain' => $requestDomain,
-            'github_repo' => $githubRepo,
-            'company' => $company
+            'metadata' => array(
+                'github_repo' => $githubRepo,
+                'company' => $company
+            )
         )
     );
 
     // Convert the response array to JSON and output it
-    echo json_encode($response);
+    // https://www.geeksforgeeks.org/php-json-pretty-print
+    echo json_encode($response, JSON_PRETTY_PRINT);
 } catch (Exception $e) {
     // Handle errors and provide an informative response
     // https://www.php.net/manual/en/language.exceptions.php
@@ -50,6 +53,6 @@ try {
         'success' => false,
         'error' => 'An error occurred.'
     );
-    echo json_encode($response);
+    echo json_encode($response, JSON_PRETTY_PRINT);
 }
 ?>
